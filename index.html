@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Fassi — Full-Stack Developer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141C;
+    --panel:#181B26;
+    --panel-2:#1E222F;
+    --line:#2A2E3C;
+    --paper:#E9E7F5;
+    --muted:#9A97B5;
+    --teal:#7F77DD;
+    --amber:#5DCAA5;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--teal);color:var(--ink);}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(14,22,32,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:var(--font-mono);font-size:13px;font-weight:600;
+    color:var(--teal); letter-spacing:0.05em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .nav-mark .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 0 3px rgba(237,237,237,0.15);}
+  .nav-links{display:flex;gap:28px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;}
+  .nav-links a{color:var(--muted);transition:color 0.2s;padding:4px 0;border-bottom:1px solid transparent;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--paper);border-color:var(--teal);}
+  .nav-links a:focus-visible{outline:2px solid var(--teal);outline-offset:4px;}
+  @media (max-width:640px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:150px 0 110px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:52px;align-items:center;
+  }
+  @media (max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:12px;color:var(--teal);
+    letter-spacing:0.12em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:16px;height:1px;background:var(--teal);}
+  h1.name{
+    font-family:var(--font-display);
+    font-size:clamp(38px, 5.4vw, 60px);
+    font-weight:700;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  h1.name .accent{color:var(--teal);}
+  .role-line{
+    font-family:var(--font-mono);
+    color:var(--muted);
+    font-size:15px;
+    margin-top:18px;
+    max-width:52ch;
+  }
+  .role-line strong{color:var(--paper);font-weight:500;}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+
+  /* monitoring panel */
+  .hero-panel{
+    border:1px solid var(--line);background:var(--panel);border-radius:8px;overflow:hidden;
+  }
+  .panel-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 18px;border-bottom:1px solid var(--line);
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.08em;
+  }
+  .panel-head .live{display:flex;align-items:center;gap:7px;color:var(--amber);}
+  .panel-head .pulse{
+    width:6px;height:6px;border-radius:50%;background:var(--amber);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(93,202,165,0.5);}
+    50%{opacity:0.6;box-shadow:0 0 0 5px rgba(93,202,165,0);}
+  }
+  .panel-chart{padding:20px 20px 0;}
+  .panel-chart svg{width:100%;height:auto;display:block;}
+  .spark{
+    fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.6s ease;
+  }
+  .spark-fill{opacity:0;transition:opacity 1s ease 0.5s;}
+  .hero-panel.in .spark{stroke-dashoffset:0;}
+  .hero-panel.in .spark-fill{opacity:1;}
+  .panel-metrics{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:18px;}
+  .pm{padding:16px 18px;border-right:1px solid var(--line);}
+  .pm:last-child{border-right:none;}
+  .pm-label{font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
+  .pm-value{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--paper);}
+  .pm-value.teal{color:var(--teal);}
+
+  .metric-label{
+    font-family:var(--font-mono);font-size:10px;color:var(--muted);
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:44px;}
+  .sec-num{font-family:var(--font-mono);font-size:12px;color:var(--teal);}
+  .sec-title{font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:600;}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;}
+  @media (max-width:780px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--muted);font-size:15.5px;margin-bottom:16px;max-width:56ch;}
+  .about-text strong{color:var(--paper);font-weight:500;}
+  .lang-panel{
+    border:1px solid var(--line);background:var(--panel);border-radius:4px;padding:22px;
+    height:fit-content;
+  }
+  .lang-panel .metric-label{margin-bottom:16px;}
+  .lang-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:13px;}
+  .lang-row:first-of-type{border-top:none;}
+  .lang-row span:last-child{color:var(--teal);font-size:11px;letter-spacing:0.05em;}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  @media (max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+  .skill-mod{background:var(--panel);padding:26px 22px;transition:background 0.25s;}
+  .skill-mod:hover{background:var(--panel-2);}
+  .skill-mod .tag{font-family:var(--font-mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;margin-bottom:10px;}
+  .skill-mod h3{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:10px;}
+  .skill-mod ul{list-style:none;}
+  .skill-mod li{font-size:13px;color:var(--muted);padding:3px 0;font-family:var(--font-mono);}
+  .skill-mod li::before{content:'· ';color:var(--teal);}
+
+  /* ---------- WORK ---------- */
+  .project{
+    display:grid;grid-template-columns:1fr 1.6fr;gap:36px;
+    padding:32px 0;border-top:1px solid var(--line);
+  }
+  .project:first-of-type{border-top:none;}
+  @media (max-width:780px){.project{grid-template-columns:1fr;gap:16px;}}
+  .project-id{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
+  .project-name{font-family:var(--font-display);font-size:24px;font-weight:600;margin-top:8px;}
+  .project-body p{color:var(--muted);font-size:14.5px;margin-bottom:14px;max-width:60ch;}
+  .stack-pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{
+    font-family:var(--font-mono);font-size:11px;color:var(--teal);
+    border:1px solid rgba(237,237,237,0.3);background:rgba(237,237,237,0.06);
+    padding:4px 10px;border-radius:20px;
+  }
+
+  /* ---------- LOG / TIMELINE ---------- */
+  .log-item{
+    display:grid;grid-template-columns:110px 1fr;gap:24px;
+    padding:22px 0;border-top:1px solid var(--line);
+  }
+  .log-item:first-of-type{border-top:none;}
+  @media (max-width:640px){.log-item{grid-template-columns:1fr;gap:6px;}}
+  .log-date{font-family:var(--font-mono);font-size:12px;color:var(--teal);}
+  .log-title{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:6px;}
+  .log-desc{color:var(--muted);font-size:14px;max-width:60ch;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    border:1px solid var(--line);background:var(--panel);border-radius:4px;
+    padding:48px;text-align:center;
+  }
+  @media (max-width:640px){.contact-panel{padding:32px 20px;}}
+  .contact-panel h2{font-family:var(--font-display);font-size:clamp(26px,4vw,36px);margin-bottom:14px;}
+  .contact-panel p{color:var(--muted);max-width:44ch;margin:0 auto 30px;}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;letter-spacing:0.03em;
+    padding:13px 26px;border-radius:4px;transition:all 0.2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--teal);color:var(--ink);font-weight:600;}
+  .btn-primary:hover{background:#6fe0d5;}
+  .btn-ghost{border:1px solid var(--line);color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+  .btn[type="submit"]{cursor:pointer;border:none;font-family:var(--font-mono);}
+
+  .contact-form{
+    max-width:520px;margin:0 auto 30px;text-align:left;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .form-row{display:flex;flex-direction:column;gap:7px;}
+  .form-row label{
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);
+    letter-spacing:0.08em;text-transform:uppercase;
+  }
+  .form-row input, .form-row textarea{
+    background:var(--ink);border:1px solid var(--line);border-radius:4px;
+    color:var(--paper);font-family:var(--font-body);font-size:14px;
+    padding:12px 14px;resize:vertical;transition:border-color 0.2s;
+  }
+  .form-row textarea{min-height:110px;}
+  .form-row input:focus, .form-row textarea:focus{
+    outline:none;border-color:var(--teal);
+  }
+  .form-note{
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);
+    margin-top:-6px;
+  }
+
+  footer{
+    padding:28px 0 40px;text-align:center;
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center;gap:22px;">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:0.02em;">AF.</span>
+      <div class="nav-mark"><span class="dot"></span>AVAILABLE FOR FREELANCE</div>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#log">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="eyebrow">Ahmed Fassi · Full-Stack Developer · BI Student</div>
+        <h1 class="name">Building software that <span class="accent">actually ships.</span></h1>
+        <p class="role-line">Third-year Business Intelligence student in Mahdia, Tunisia, working full-stack and DevOps on the side — <strong>Angular, PHP, React</strong>, and infrastructure tooling for real clients, not just class projects.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">View work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-panel reveal">
+        <div class="panel-head">
+          <span>MONITOR // serv.io</span>
+          <span class="live"><span class="pulse"></span>LIVE</span>
+        </div>
+        <div class="panel-chart">
+          <svg viewBox="0 0 260 78" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="var(--teal)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polygon class="spark-fill" points="0,78 0,52 26,46 52,58 78,34 104,40 130,20 156,30 182,16 208,24 234,10 260,18 260,78" fill="url(#sparkFill)"/>
+            <polyline class="spark" points="0,52 26,46 52,58 78,34 104,40 130,20 156,30 182,16 208,24 234,10 260,18" />
+          </svg>
+        </div>
+        <div class="panel-metrics">
+          <div class="pm">
+            <div class="pm-label">Uptime</div>
+            <div class="pm-value teal">99.9%</div>
+          </div>
+          <div class="pm">
+            <div class="pm-label">P95 Latency</div>
+            <div class="pm-value">42ms</div>
+          </div>
+          <div class="pm">
+            <div class="pm-label">Deploys</div>
+            <div class="pm-value teal">18</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">About</span></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a Computer Management student, currently in my <strong>third year specializing in Business Intelligence</strong> at ISI Mahdia. I'm rigorous and genuinely passionate about technology — I work across several programming languages and web technologies, combining solid academic training with a real taste for building working applications. Fast to adapt, quick to pick up new tools.</p>
+        <p>Most recently that meant a <strong>DevOps internship at Vermeg Tunisia</strong> (July 2026), where I helped automate a CI/CD pipeline, containerized 3 applications with Docker, and set up Prometheus and Grafana to track key service health metrics — the same instrumentation mindset that shows up in how I structure the projects below.</p>
+        <p>Outside of code, I'm a <strong>Scout Leader</strong> (2023–present), leading a group of young scouts and organizing weekly activities and camps — where most of my team-management and event-organization instincts actually come from.</p>
+      </div>
+      <div class="lang-panel reveal">
+        <div class="metric-label">Contact</div>
+        <div class="lang-row"><span>Email</span><span><a href="mailto:ahmedfassi006@gmail.com" style="color:var(--teal);">ahmedfassi006@gmail.com</a></span></div>
+        <div class="lang-row"><span>Phone</span><span>+216 27 968 923</span></div>
+        <div class="lang-row"><span>LinkedIn</span><span><a href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener" style="color:var(--teal);">/in/ahmedfassi</a></span></div>
+        <div class="metric-label" style="margin-top:22px;">Languages</div>
+        <div class="lang-row"><span>Arabic</span><span>NATIVE</span></div>
+        <div class="lang-row"><span>French</span><span>FLUENT</span></div>
+        <div class="lang-row"><span>English</span><span>FLUENT</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Stack</span></div>
+    <div class="skill-grid">
+      <div class="skill-mod reveal">
+        <div class="tag">LANGUAGES</div>
+        <h3>Core</h3>
+        <ul>
+          <li>HTML5, CSS3, JavaScript</li>
+          <li>PHP</li>
+          <li>Java, Python, C</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">FRAMEWORKS</div>
+        <h3>Building With</h3>
+        <ul>
+          <li>Angular, React</li>
+          <li>Symfony</li>
+          <li>Bootstrap 5</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">DEVOPS / CI-CD</div>
+        <h3>Infrastructure</h3>
+        <ul>
+          <li>Docker & Kubernetes</li>
+          <li>Jenkins</li>
+          <li>SonarQube, Nexus</li>
+          <li>Prometheus & Grafana</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">DATA / TOOLS</div>
+        <h3>Analysis</h3>
+        <ul>
+          <li>SQL</li>
+          <li>VS Code, Eclipse, NetBeans</li>
+          <li>CodeBlocks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Services</span></div>
+    <div class="skill-grid">
+      <div class="skill-mod reveal">
+        <div class="tag">01</div>
+        <h3>Full-Stack Web Development</h3>
+        <ul>
+          <li>Angular / React front-ends</li>
+          <li>PHP / Symfony back-ends</li>
+          <li>MySQL data modeling</li>
+          <li>REST API integration</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">02</div>
+        <h3>Bilingual & RTL Apps</h3>
+        <ul>
+          <li>Arabic/English i18n</li>
+          <li>Full RTL layout support</li>
+          <li>Dark/light theming</li>
+          <li>Accessible, responsive UI</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">03</div>
+        <h3>DevOps & CI/CD Setup</h3>
+        <ul>
+          <li>Docker containerization</li>
+          <li>Jenkins pipelines</li>
+          <li>SonarQube / Nexus</li>
+          <li>Prometheus & Grafana</li>
+        </ul>
+      </div>
+      <div class="skill-mod reveal">
+        <div class="tag">04</div>
+        <h3>SaaS & Admin Dashboards</h3>
+        <ul>
+          <li>Admin/back-office panels</li>
+          <li>Auth & session management</li>
+          <li>Content management systems</li>
+          <li>Data-driven reporting UI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Selected Work</span></div>
+
+    <div class="project reveal">
+      <div>
+        <div class="project-id">PROJECT / 01</div>
+        <div class="project-name">Serv.io</div>
+      </div>
+      <div class="project-body">
+        <p>A bilingual (English/Arabic) restaurant management SaaS built on Angular 21 with a PHP/MySQL backend, developed during my internship at Qartis Technologies. Full RTL support, dark/light theming, and an admin dashboard with bilingual content fields for menu and section management.</p>
+        <div class="stack-pills">
+          <span class="pill">Angular 21</span>
+          <span class="pill">SSR</span>
+          <span class="pill">PHP</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">i18n / RTL</span>
+        </div>
+        <a href="https://servio-ashen.vercel.app" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-family:var(--font-mono);font-size:12px;color:var(--teal);">servio-ashen.vercel.app →</a>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div>
+        <div class="project-id">PROJECT / 02</div>
+        <div class="project-name">SignKids</div>
+      </div>
+      <div class="project-body">
+        <p>An educational platform helping deaf Tunisian children and their families learn French Sign Language (LSF) in a playful, accessible way — built during the INJAZ Tunisia program. I designed the full front-end and back-end architecture across 7 responsive pages, built the PHP back-end (auth, session handling, video/level API, secured MySQL database), and developed 3 interactive JavaScript mini-games (sign matching, memory, free practice) with score and progress tracking.</p>
+        <div class="stack-pills">
+          <span class="pill">HTML/CSS/JS</span>
+          <span class="pill">PHP</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">INJAZ Tunisia</span>
+        </div>
+        <a href="https://signkids.infinityfreeapp.com" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-family:var(--font-mono);font-size:12px;color:var(--teal);">signkids.infinityfreeapp.com →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="log">
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title">Experience</span></div>
+
+    <div class="log-item reveal">
+      <div class="log-date">Aug 2026</div>
+      <div>
+        <div class="log-title">Full-Stack Intern, Qartis Technologies</div>
+        <div class="log-desc">Built Serv.io end-to-end during the internship — a bilingual (English/Arabic) restaurant management SaaS. Owned the Angular 21 front-end (dark/light theming, full RTL support) and the PHP/MySQL back-end, including a bilingual admin dashboard for menu and section management.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">Jul 2026</div>
+      <div>
+        <div class="log-title">DevOps Intern, Vermeg Tunisia</div>
+        <div class="log-desc">One-month internship on the DevOps team. Participated in automating a CI/CD pipeline covering build, test, and deployment; containerized 3 applications with Docker to make them portable across environments; set up and used Prometheus and Grafana to monitor 2 key service health metrics.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">Jul 2026</div>
+      <div>
+        <div class="log-title">Modern Front-End Web Development — Udemy</div>
+        <div class="log-desc">Certificate course in modern front-end development practices.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">May 2026</div>
+      <div>
+        <div class="log-title">Company Program — INJAZ Tunisia</div>
+        <div class="log-desc">Entrepreneurship and applied-project program; built SignKids as the program's flagship project.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">2024–2027</div>
+      <div>
+        <div class="log-title">Licence Informatique de Gestion, ISI Mahdia</div>
+        <div class="log-desc">Third-year Business Intelligence specialization — data modeling, SQL, and analytics, alongside independent full-stack development work.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">Jun 2024</div>
+      <div>
+        <div class="log-title">Baccalauréat, Sciences Informatiques</div>
+        <div class="log-desc">Lycée Cité El Amal, Gabès.</div>
+      </div>
+    </div>
+
+    <div class="log-item reveal">
+      <div class="log-date">2023–Now</div>
+      <div>
+        <div class="log-title">Scout Leader</div>
+        <div class="log-desc">Leading a group of young scouts — organizing weekly activities and camps, and building team-management skills along the way.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:1px solid var(--line);">
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title">Contact</span></div>
+    <div class="contact-panel reveal">
+      <h2>Let's build something.</h2>
+      <p>Open to full-stack, frontend, and DevOps work — freelance or otherwise. Send a message below or reach out directly.</p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-row">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required placeholder="What are you looking to build?"></textarea>
+        </div>
+        <div class="form-note">Sent directly to Ahmed — nothing stored here.</div>
+        <button type="submit" class="btn btn-primary" id="cf-submit" style="align-self:flex-start;">Send message</button>
+        <div class="form-status" id="cf-status" style="font-family:var(--font-mono);font-size:12px;margin-top:8px;"></div>
+      </form>
+
+      <div class="cta-row">
+        <a class="btn btn-ghost" href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Ahmed Fassi. All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('cf-submit');
+  const statusEl = document.getElementById('cf-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    statusEl.textContent = '';
+    statusEl.style.color = 'var(--muted)';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      statusEl.textContent = 'Message sent — thanks! I\u2019ll get back to you soon.';
+      statusEl.style.color = 'var(--amber)';
+      form.reset();
+    } catch (err) {
+      statusEl.textContent = 'Could not send message. Please try again or email directly.';
+      statusEl.style.color = '#e08080';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>
+
+</body>
+</html>
