@@ -64,6 +64,16 @@
   .nav-links a:focus-visible{outline:2px solid var(--teal);outline-offset:4px;}
   @media (max-width:640px){.nav-links{display:none;}}
 
+  .lang-toggle{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;
+    border:1px solid var(--line);color:var(--muted);background:transparent;
+    padding:6px 12px;border-radius:20px;cursor:pointer;transition:all 0.2s;
+    display:flex;align-items:center;gap:2px;
+  }
+  .lang-toggle:hover{border-color:var(--teal);color:var(--paper);}
+  .lang-toggle span{padding:2px 5px;border-radius:10px;transition:all 0.2s;}
+  .lang-toggle span.active{background:var(--teal);color:var(--ink);font-weight:600;}
+
   /* ---------- HERO ---------- */
   header.hero{
     padding:150px 0 110px;
@@ -253,16 +263,19 @@
   <div class="nav-inner">
     <div style="display:flex;align-items:center;gap:22px;">
       <span style="font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:0.02em;">AF.</span>
-      <div class="nav-mark"><span class="dot"></span>AVAILABLE FOR FREELANCE</div>
+      <div class="nav-mark"><span class="dot"></span><span data-i18n="nav-badge">AVAILABLE FOR FREELANCE</span></div>
     </div>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#stack">Stack</a>
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="#log">Experience</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-i18n="nav-about">About</a>
+      <a href="#stack" data-i18n="nav-stack">Stack</a>
+      <a href="#services" data-i18n="nav-services">Services</a>
+      <a href="#work" data-i18n="nav-work">Work</a>
+      <a href="#log" data-i18n="nav-log">Experience</a>
+      <a href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+      <span id="lang-en" class="active">EN</span><span style="color:var(--line);">/</span><span id="lang-fr">FR</span>
+    </button>
   </div>
 </nav>
 
@@ -271,12 +284,12 @@
   <header class="hero">
     <div class="hero-grid">
       <div class="hero-left">
-        <div class="eyebrow">Ahmed Fassi · Full-Stack Developer · BI Student</div>
-        <h1 class="name">Building software that <span class="accent">actually ships.</span></h1>
-        <p class="role-line">Third-year Business Intelligence student in Mahdia, Tunisia, working full-stack and DevOps on the side — <strong>Angular, PHP, React</strong>, and infrastructure tooling for real clients, not just class projects.</p>
+        <div class="eyebrow" data-i18n="hero-eyebrow">Ahmed Fassi · Full-Stack Developer · BI Student</div>
+        <h1 class="name" data-i18n="hero-title">Building software that <span class="accent">actually ships.</span></h1>
+        <p class="role-line" data-i18n="hero-role">Third-year Business Intelligence student in Mahdia, Tunisia, working full-stack and DevOps on the side — <strong>Angular, PHP, React</strong>, and infrastructure tooling for real clients, not just class projects.</p>
         <div class="hero-cta">
-          <a href="#work" class="btn btn-primary">View work</a>
-          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          <a href="#work" class="btn btn-primary" data-i18n="hero-cta-work">View work</a>
+          <a href="#contact" class="btn btn-ghost" data-i18n="hero-cta-contact">Get in touch</a>
         </div>
       </div>
 
@@ -299,15 +312,15 @@
         </div>
         <div class="panel-metrics">
           <div class="pm">
-            <div class="pm-label">Uptime</div>
+            <div class="pm-label" data-i18n="pm-uptime">Uptime</div>
             <div class="pm-value teal">99.9%</div>
           </div>
           <div class="pm">
-            <div class="pm-label">P95 Latency</div>
+            <div class="pm-label" data-i18n="pm-latency">P95 Latency</div>
             <div class="pm-value">42ms</div>
           </div>
           <div class="pm">
-            <div class="pm-label">Deploys</div>
+            <div class="pm-label" data-i18n="pm-deploys">Deploys</div>
             <div class="pm-value teal">18</div>
           </div>
         </div>
@@ -316,32 +329,32 @@
   </header>
 
   <section id="about">
-    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">About</span></div>
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title" data-i18n="about-title">About</span></div>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I'm a Computer Management student, currently in my <strong>third year specializing in Business Intelligence</strong> at ISI Mahdia. I'm rigorous and genuinely passionate about technology — I work across several programming languages and web technologies, combining solid academic training with a real taste for building working applications. Fast to adapt, quick to pick up new tools.</p>
-        <p>Most recently that meant a <strong>DevOps internship at Vermeg Tunisia</strong> (July 2026), where I helped automate a CI/CD pipeline, containerized 3 applications with Docker, and set up Prometheus and Grafana to track key service health metrics — the same instrumentation mindset that shows up in how I structure the projects below.</p>
-        <p>Outside of code, I'm a <strong>Scout Leader</strong> (2023–present), leading a group of young scouts and organizing weekly activities and camps — where most of my team-management and event-organization instincts actually come from.</p>
+        <p data-i18n="about-p1">I'm a Computer Management student, currently in my <strong>third year specializing in Business Intelligence</strong> at ISI Mahdia. I'm rigorous and genuinely passionate about technology — I work across several programming languages and web technologies, combining solid academic training with a real taste for building working applications. Fast to adapt, quick to pick up new tools.</p>
+        <p data-i18n="about-p2">Most recently that meant a <strong>DevOps internship at Vermeg Tunisia</strong> (July 2026), where I helped automate a CI/CD pipeline, containerized 3 applications with Docker, and set up Prometheus and Grafana to track key service health metrics — the same instrumentation mindset that shows up in how I structure the projects below.</p>
+        <p data-i18n="about-p3">Outside of code, I'm a <strong>Scout Leader</strong> (2023–present), leading a group of young scouts and organizing weekly activities and camps — where most of my team-management and event-organization instincts actually come from.</p>
       </div>
       <div class="lang-panel reveal">
-        <div class="metric-label">Contact</div>
-        <div class="lang-row"><span>Email</span><span><a href="mailto:ahmedfassi006@gmail.com" style="color:var(--teal);">ahmedfassi006@gmail.com</a></span></div>
-        <div class="lang-row"><span>Phone</span><span>+216 27 968 923</span></div>
+        <div class="metric-label" data-i18n="about-contact-label">Contact</div>
+        <div class="lang-row"><span data-i18n="about-email-label">Email</span><span><a href="mailto:ahmedfassi006@gmail.com" style="color:var(--teal);">ahmedfassi006@gmail.com</a></span></div>
+        <div class="lang-row"><span data-i18n="about-phone-label">Phone</span><span>+216 27 968 923</span></div>
         <div class="lang-row"><span>LinkedIn</span><span><a href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener" style="color:var(--teal);">/in/ahmedfassi</a></span></div>
-        <div class="metric-label" style="margin-top:22px;">Languages</div>
-        <div class="lang-row"><span>Arabic</span><span>NATIVE</span></div>
-        <div class="lang-row"><span>French</span><span>FLUENT</span></div>
-        <div class="lang-row"><span>English</span><span>FLUENT</span></div>
+        <div class="metric-label" style="margin-top:22px;" data-i18n="about-languages-label">Languages</div>
+        <div class="lang-row"><span data-i18n="lang-arabic">Arabic</span><span data-i18n="level-native">NATIVE</span></div>
+        <div class="lang-row"><span data-i18n="lang-french">French</span><span data-i18n="level-fluent-1">FLUENT</span></div>
+        <div class="lang-row"><span data-i18n="lang-english">English</span><span data-i18n="level-fluent-2">FLUENT</span></div>
       </div>
     </div>
   </section>
 
   <section id="stack">
-    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Stack</span></div>
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title" data-i18n="stack-title">Stack</span></div>
     <div class="skill-grid">
       <div class="skill-mod reveal">
-        <div class="tag">LANGUAGES</div>
-        <h3>Core</h3>
+        <div class="tag" data-i18n="stack-tag1">LANGUAGES</div>
+        <h3 data-i18n="stack-h1">Core</h3>
         <ul>
           <li>HTML5, CSS3, JavaScript</li>
           <li>PHP</li>
@@ -349,8 +362,8 @@
         </ul>
       </div>
       <div class="skill-mod reveal">
-        <div class="tag">FRAMEWORKS</div>
-        <h3>Building With</h3>
+        <div class="tag" data-i18n="stack-tag2">FRAMEWORKS</div>
+        <h3 data-i18n="stack-h2">Building With</h3>
         <ul>
           <li>Angular, React</li>
           <li>Symfony</li>
@@ -358,8 +371,8 @@
         </ul>
       </div>
       <div class="skill-mod reveal">
-        <div class="tag">DEVOPS / CI-CD</div>
-        <h3>Infrastructure</h3>
+        <div class="tag" data-i18n="stack-tag3">DEVOPS / CI-CD</div>
+        <h3 data-i18n="stack-h3">Infrastructure</h3>
         <ul>
           <li>Docker & Kubernetes</li>
           <li>Jenkins</li>
@@ -368,8 +381,8 @@
         </ul>
       </div>
       <div class="skill-mod reveal">
-        <div class="tag">DATA / TOOLS</div>
-        <h3>Analysis</h3>
+        <div class="tag" data-i18n="stack-tag4">DATA / TOOLS</div>
+        <h3 data-i18n="stack-h4">Analysis</h3>
         <ul>
           <li>SQL</li>
           <li>VS Code, Eclipse, NetBeans</li>
@@ -380,61 +393,61 @@
   </section>
 
   <section id="services">
-    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Services</span></div>
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title" data-i18n="services-title">Services</span></div>
     <div class="skill-grid">
       <div class="skill-mod reveal">
         <div class="tag">01</div>
-        <h3>Full-Stack Web Development</h3>
+        <h3 data-i18n="services-h1">Full-Stack Web Development</h3>
         <ul>
-          <li>Angular / React front-ends</li>
-          <li>PHP / Symfony back-ends</li>
-          <li>MySQL data modeling</li>
-          <li>REST API integration</li>
+          <li data-i18n="services-li1a">Angular / React front-ends</li>
+          <li data-i18n="services-li1b">PHP / Symfony back-ends</li>
+          <li data-i18n="services-li1c">MySQL data modeling</li>
+          <li data-i18n="services-li1d">REST API integration</li>
         </ul>
       </div>
       <div class="skill-mod reveal">
         <div class="tag">02</div>
-        <h3>Bilingual & RTL Apps</h3>
+        <h3 data-i18n="services-h2">Bilingual & RTL Apps</h3>
         <ul>
-          <li>Arabic/English i18n</li>
-          <li>Full RTL layout support</li>
-          <li>Dark/light theming</li>
-          <li>Accessible, responsive UI</li>
+          <li data-i18n="services-li2a">Arabic/English i18n</li>
+          <li data-i18n="services-li2b">Full RTL layout support</li>
+          <li data-i18n="services-li2c">Dark/light theming</li>
+          <li data-i18n="services-li2d">Accessible, responsive UI</li>
         </ul>
       </div>
       <div class="skill-mod reveal">
         <div class="tag">03</div>
-        <h3>DevOps & CI/CD Setup</h3>
+        <h3 data-i18n="services-h3">DevOps & CI/CD Setup</h3>
         <ul>
-          <li>Docker containerization</li>
-          <li>Jenkins pipelines</li>
+          <li data-i18n="services-li3a">Docker containerization</li>
+          <li data-i18n="services-li3b">Jenkins pipelines</li>
           <li>SonarQube / Nexus</li>
           <li>Prometheus & Grafana</li>
         </ul>
       </div>
       <div class="skill-mod reveal">
         <div class="tag">04</div>
-        <h3>SaaS & Admin Dashboards</h3>
+        <h3 data-i18n="services-h4">SaaS & Admin Dashboards</h3>
         <ul>
-          <li>Admin/back-office panels</li>
-          <li>Auth & session management</li>
-          <li>Content management systems</li>
-          <li>Data-driven reporting UI</li>
+          <li data-i18n="services-li4a">Admin/back-office panels</li>
+          <li data-i18n="services-li4b">Auth & session management</li>
+          <li data-i18n="services-li4c">Content management systems</li>
+          <li data-i18n="services-li4d">Data-driven reporting UI</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="work">
-    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Selected Work</span></div>
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title" data-i18n="work-title">Selected Work</span></div>
 
     <div class="project reveal">
       <div>
-        <div class="project-id">PROJECT / 01</div>
+        <div class="project-id" data-i18n="work-id1">PROJECT / 01</div>
         <div class="project-name">Serv.io</div>
       </div>
       <div class="project-body">
-        <p>A bilingual (English/Arabic) restaurant management SaaS built on Angular 21 with a PHP/MySQL backend, developed during my internship at Qartis Technologies. Full RTL support, dark/light theming, and an admin dashboard with bilingual content fields for menu and section management.</p>
+        <p data-i18n="work-p1">A bilingual (English/Arabic) restaurant management SaaS built on Angular 21 with a PHP/MySQL backend, developed during my internship at Qartis Technologies. Full RTL support, dark/light theming, and an admin dashboard with bilingual content fields for menu and section management.</p>
         <div class="stack-pills">
           <span class="pill">Angular 21</span>
           <span class="pill">SSR</span>
@@ -448,11 +461,11 @@
 
     <div class="project reveal">
       <div>
-        <div class="project-id">PROJECT / 02</div>
+        <div class="project-id" data-i18n="work-id2">PROJECT / 02</div>
         <div class="project-name">SignKids</div>
       </div>
       <div class="project-body">
-        <p>An educational platform helping deaf Tunisian children and their families learn French Sign Language (LSF) in a playful, accessible way — built during the INJAZ Tunisia program. I designed the full front-end and back-end architecture across 7 responsive pages, built the PHP back-end (auth, session handling, video/level API, secured MySQL database), and developed 3 interactive JavaScript mini-games (sign matching, memory, free practice) with score and progress tracking.</p>
+        <p data-i18n="work-p2">An educational platform helping deaf Tunisian children and their families learn French Sign Language (LSF) in a playful, accessible way — built during the INJAZ Tunisia program. I designed the full front-end and back-end architecture across 7 responsive pages, built the PHP back-end (auth, session handling, video/level API, secured MySQL database), and developed 3 interactive JavaScript mini-games (sign matching, memory, free practice) with score and progress tracking.</p>
         <div class="stack-pills">
           <span class="pill">HTML/CSS/JS</span>
           <span class="pill">PHP</span>
@@ -465,37 +478,37 @@
   </section>
 
   <section id="log">
-    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title">Experience</span></div>
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title" data-i18n="log-title">Experience</span></div>
 
     <div class="log-item reveal">
       <div class="log-date">Aug 2026</div>
       <div>
-        <div class="log-title">Full-Stack Intern, Qartis Technologies</div>
-        <div class="log-desc">Built Serv.io end-to-end during the internship — a bilingual (English/Arabic) restaurant management SaaS. Owned the Angular 21 front-end (dark/light theming, full RTL support) and the PHP/MySQL back-end, including a bilingual admin dashboard for menu and section management.</div>
+        <div class="log-title" data-i18n="log1-title">Full-Stack Intern, Qartis Technologies</div>
+        <div class="log-desc" data-i18n="log1-desc">Built Serv.io end-to-end during the internship — a bilingual (English/Arabic) restaurant management SaaS. Owned the Angular 21 front-end (dark/light theming, full RTL support) and the PHP/MySQL back-end, including a bilingual admin dashboard for menu and section management.</div>
       </div>
     </div>
 
     <div class="log-item reveal">
       <div class="log-date">Jul 2026</div>
       <div>
-        <div class="log-title">DevOps Intern, Vermeg Tunisia</div>
-        <div class="log-desc">One-month internship on the DevOps team. Participated in automating a CI/CD pipeline covering build, test, and deployment; containerized 3 applications with Docker to make them portable across environments; set up and used Prometheus and Grafana to monitor 2 key service health metrics.</div>
+        <div class="log-title" data-i18n="log2-title">DevOps Intern, Vermeg Tunisia</div>
+        <div class="log-desc" data-i18n="log2-desc">One-month internship on the DevOps team. Participated in automating a CI/CD pipeline covering build, test, and deployment; containerized 3 applications with Docker to make them portable across environments; set up and used Prometheus and Grafana to monitor 2 key service health metrics.</div>
       </div>
     </div>
 
     <div class="log-item reveal">
       <div class="log-date">Jul 2026</div>
       <div>
-        <div class="log-title">Modern Front-End Web Development — Udemy</div>
-        <div class="log-desc">Certificate course in modern front-end development practices.</div>
+        <div class="log-title" data-i18n="log3-title">Modern Front-End Web Development — Udemy</div>
+        <div class="log-desc" data-i18n="log3-desc">Certificate course in modern front-end development practices.</div>
       </div>
     </div>
 
     <div class="log-item reveal">
       <div class="log-date">May 2026</div>
       <div>
-        <div class="log-title">Company Program — INJAZ Tunisia</div>
-        <div class="log-desc">Entrepreneurship and applied-project program; built SignKids as the program's flagship project.</div>
+        <div class="log-title" data-i18n="log4-title">Company Program — INJAZ Tunisia</div>
+        <div class="log-desc" data-i18n="log4-desc">Entrepreneurship and applied-project program; built SignKids as the program's flagship project.</div>
       </div>
     </div>
 
@@ -503,7 +516,7 @@
       <div class="log-date">2024–2027</div>
       <div>
         <div class="log-title">Licence Informatique de Gestion, ISI Mahdia</div>
-        <div class="log-desc">Third-year Business Intelligence specialization — data modeling, SQL, and analytics, alongside independent full-stack development work.</div>
+        <div class="log-desc" data-i18n="log5-desc">Third-year Business Intelligence specialization — data modeling, SQL, and analytics, alongside independent full-stack development work.</div>
       </div>
     </div>
 
@@ -518,48 +531,175 @@
     <div class="log-item reveal">
       <div class="log-date">2023–Now</div>
       <div>
-        <div class="log-title">Scout Leader</div>
-        <div class="log-desc">Leading a group of young scouts — organizing weekly activities and camps, and building team-management skills along the way.</div>
+        <div class="log-title" data-i18n="log7-title">Scout Leader</div>
+        <div class="log-desc" data-i18n="log7-desc">Leading a group of young scouts — organizing weekly activities and camps, and building team-management skills along the way.</div>
       </div>
     </div>
   </section>
 
   <section id="contact" style="border-bottom:1px solid var(--line);">
-    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title">Contact</span></div>
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title" data-i18n="contact-title">Contact</span></div>
     <div class="contact-panel reveal">
-      <h2>Let's build something.</h2>
-      <p>Open to full-stack, frontend, and DevOps work — freelance or otherwise. Send a message below or reach out directly.</p>
+      <h2 data-i18n="contact-h2">Let's build something.</h2>
+      <p data-i18n="contact-p">Open to full-stack, frontend, and DevOps work — freelance or otherwise. Send a message below or reach out directly.</p>
 
       <form class="contact-form" id="contact-form">
         <div class="form-row">
-          <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" required placeholder="Your name">
+          <label for="cf-name" data-i18n="form-label-name">Name</label>
+          <input type="text" id="cf-name" name="name" required placeholder="Your name" data-i18n-placeholder="form-placeholder-name">
         </div>
         <div class="form-row">
           <label for="cf-email">Email</label>
           <input type="email" id="cf-email" name="email" required placeholder="you@example.com">
         </div>
         <div class="form-row">
-          <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" required placeholder="What are you looking to build?"></textarea>
+          <label for="cf-message" data-i18n="form-label-message">Message</label>
+          <textarea id="cf-message" name="message" required placeholder="What are you looking to build?" data-i18n-placeholder="form-placeholder-message"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" id="cf-submit" style="align-self:flex-start;">Send message</button>
+        <button type="submit" class="btn btn-primary" id="cf-submit" style="align-self:flex-start;" data-i18n="form-submit">Send message</button>
         <div class="form-status" id="cf-status" style="font-family:var(--font-mono);font-size:12px;margin-top:8px;"></div>
       </form>
 
       <div class="cta-row">
-        <a class="btn btn-ghost" href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener" data-i18n="contact-linkedin">Connect on LinkedIn</a>
       </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2026 Ahmed Fassi. All rights reserved.
+    <span data-i18n="footer-text">&copy; 2026 Ahmed Fassi. All rights reserved.</span>
   </footer>
 
 </div>
 
 <script>
+  const translations = {
+    fr: {
+      'nav-about': 'À propos',
+      'nav-stack': 'Stack',
+      'nav-services': 'Services',
+      'nav-work': 'Projets',
+      'nav-log': 'Expérience',
+      'nav-contact': 'Contact',
+      'nav-badge': 'DISPONIBLE EN FREELANCE',
+      'hero-eyebrow': 'Ahmed Fassi · Développeur Full-Stack · Étudiant en BI',
+      'hero-title': 'Je construis des logiciels qui <span class="accent">sortent vraiment.</span>',
+      'hero-role': "Étudiant en troisième année de Business Intelligence à Mahdia, Tunisie, je développe en full-stack et DevOps en parallèle — <strong>Angular, PHP, React</strong>, et des outils d'infrastructure pour de vrais clients, pas seulement des projets scolaires.",
+      'hero-cta-work': 'Voir les projets',
+      'hero-cta-contact': 'Me contacter',
+      'pm-uptime': 'Disponibilité',
+      'pm-latency': 'Latence P95',
+      'pm-deploys': 'Déploiements',
+      'about-title': 'À propos',
+      'about-p1': "Je suis étudiant en Informatique de Gestion, actuellement en <strong>troisième année spécialisée en Business Intelligence</strong> à l'ISI Mahdia. Rigoureux et passionné par la technologie, je maîtrise plusieurs langages de programmation et technologies web, combinant une solide formation académique avec un vrai goût pour le développement d'applications concrètes. Capable de m'adapter rapidement et d'apprendre de nouveaux outils.",
+      'about-p2': "Plus récemment, cela s'est traduit par un <strong>stage DevOps chez Vermeg Tunisia</strong> (juillet 2026), où j'ai participé à l'automatisation d'un pipeline CI/CD, conteneurisé 3 applications avec Docker, et mis en place Prometheus et Grafana pour suivre les métriques clés de santé des services — la même approche d'instrumentation qui se retrouve dans la structure des projets ci-dessous.",
+      'about-p3': "En dehors du code, je suis <strong>chef scout</strong> (2023–présent), encadrant un groupe de jeunes scouts et organisant des activités hebdomadaires et des camps — c'est de là que viennent la plupart de mes réflexes de gestion d'équipe et d'organisation d'événements.",
+      'about-contact-label': 'Contact',
+      'about-email-label': 'Email',
+      'about-phone-label': 'Téléphone',
+      'about-languages-label': 'Langues',
+      'lang-arabic': 'Arabe',
+      'lang-french': 'Français',
+      'lang-english': 'Anglais',
+      'level-native': 'NATIF',
+      'level-fluent-1': 'COURANT',
+      'level-fluent-2': 'COURANT',
+      'stack-title': 'Stack Technique',
+      'stack-tag1': 'LANGAGES',
+      'stack-tag2': 'FRAMEWORKS',
+      'stack-tag3': 'DEVOPS / CI-CD',
+      'stack-tag4': 'DONNÉES / OUTILS',
+      'stack-h1': 'Langages',
+      'stack-h2': 'Frameworks',
+      'stack-h3': 'Infrastructure',
+      'stack-h4': 'Analyse',
+      'services-title': 'Services',
+      'services-h1': 'Développement Web Full-Stack',
+      'services-li1a': 'Interfaces Angular / React',
+      'services-li1b': 'Back-ends PHP / Symfony',
+      'services-li1c': 'Modélisation de données MySQL',
+      'services-li1d': "Intégration d'API REST",
+      'services-h2': 'Applications Bilingues & RTL',
+      'services-li2a': 'i18n Arabe/Anglais',
+      'services-li2b': 'Support complet des mises en page RTL',
+      'services-li2c': 'Thèmes clair/sombre',
+      'services-li2d': 'Interfaces accessibles et responsives',
+      'services-h3': 'Mise en place DevOps & CI/CD',
+      'services-li3a': 'Conteneurisation Docker',
+      'services-li3b': 'Pipelines Jenkins',
+      'services-h4': 'SaaS & Tableaux de Bord Admin',
+      'services-li4a': "Panneaux d'administration",
+      'services-li4b': "Gestion de l'authentification et des sessions",
+      'services-li4c': 'Systèmes de gestion de contenu',
+      'services-li4d': 'Interfaces de reporting basées sur les données',
+      'work-title': 'Projets Sélectionnés',
+      'work-id1': 'PROJET / 01',
+      'work-id2': 'PROJET / 02',
+      'work-p1': "Un SaaS bilingue (anglais/arabe) de gestion de restaurant, construit avec Angular 21 et un back-end PHP/MySQL, développé pendant mon stage chez Qartis Technologies. Support RTL complet, thèmes clair/sombre, et un tableau de bord admin avec des champs de contenu bilingues pour la gestion des menus et des sections.",
+      'work-p2': "Une plateforme éducative aidant les enfants sourds tunisiens et leurs familles à apprendre la Langue des Signes Française (LSF) de manière ludique et accessible — développée dans le cadre du programme INJAZ Tunisia. J'ai conçu toute l'architecture front-end et back-end sur 7 pages responsives, développé le back-end PHP (authentification, gestion des sessions, API vidéos/niveaux, base de données MySQL sécurisée), et créé 3 mini-jeux JavaScript interactifs (association de signes, mémoire, pratique libre) avec suivi du score et de la progression.",
+      'log-title': 'Expérience',
+      'log1-title': 'Stagiaire Full-Stack, Qartis Technologies',
+      'log1-desc': "Développé Serv.io de bout en bout pendant le stage — un SaaS bilingue de gestion de restaurant. Responsable du front-end Angular 21 (thèmes clair/sombre, support RTL complet) et du back-end PHP/MySQL, incluant un tableau de bord admin bilingue pour la gestion des menus et des sections.",
+      'log2-title': 'Stagiaire DevOps, Vermeg Tunisia',
+      'log2-desc': "Stage d'un mois au sein de l'équipe DevOps. Participation à l'automatisation d'un pipeline CI/CD couvrant build, test et déploiement ; conteneurisation de 3 applications avec Docker pour faciliter leur portabilité ; mise en place et utilisation de Prometheus et Grafana pour suivre 2 métriques clés de santé des services.",
+      'log3-title': 'Développement Web Front-End Moderne — Udemy',
+      'log3-desc': 'Formation certifiante sur les pratiques modernes de développement front-end.',
+      'log4-title': 'Programme Entreprise — INJAZ Tunisia',
+      'log4-desc': "Programme d'entrepreneuriat et de projet appliqué ; SignKids développé comme projet phare du programme.",
+      'log5-desc': 'Spécialisation en Business Intelligence de troisième année — modélisation de données, SQL et analytique, en parallèle d\'un travail de développement full-stack indépendant.',
+      'log7-title': 'Chef Scout',
+      'log7-desc': "Encadrement d'un groupe de jeunes scouts — organisation d'activités hebdomadaires et de camps, développant au passage des compétences en gestion d'équipe.",
+      'contact-title': 'Contact',
+      'contact-h2': 'Construisons quelque chose ensemble.',
+      'contact-p': 'Ouvert aux missions full-stack, frontend et DevOps — en freelance ou autrement. Envoyez un message ci-dessous ou contactez-moi directement.',
+      'form-label-name': 'Nom',
+      'form-placeholder-name': 'Votre nom',
+      'form-label-message': 'Message',
+      'form-placeholder-message': 'Que souhaitez-vous construire ?',
+      'form-submit': 'Envoyer le message',
+      'contact-linkedin': 'Me contacter sur LinkedIn',
+      'footer-text': '© 2026 Ahmed Fassi. Tous droits réservés.',
+    },
+  };
+
+  const originals = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    originals[el.getAttribute('data-i18n')] = el.innerHTML;
+  });
+  const originalPlaceholders = {};
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    originalPlaceholders[el.getAttribute('data-i18n-placeholder')] = el.getAttribute('placeholder');
+  });
+
+  const statusMessages = {
+    en: { sending: 'Sending…', success: 'Message sent — thanks! I\u2019ll get back to you soon.', error: 'Could not send message. Please try again or email directly.', submit: 'Send message' },
+    fr: { sending: 'Envoi…', success: 'Message envoyé — merci ! Je vous répondrai bientôt.', error: "Impossible d'envoyer le message. Réessayez ou envoyez un e-mail directement.", submit: 'Envoyer le message' },
+  };
+
+  let currentLang = localStorage.getItem('portfolio-lang') || 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      el.innerHTML = lang === 'en' ? originals[key] : (translations.fr[key] || originals[key]);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      el.setAttribute('placeholder', lang === 'en' ? originalPlaceholders[key] : (translations.fr[key] || originalPlaceholders[key]));
+    });
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+    localStorage.setItem('portfolio-lang', lang);
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    applyLang(currentLang === 'en' ? 'fr' : 'en');
+  });
+
+  applyLang(currentLang);
+
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -580,9 +720,10 @@
     const name = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const message = document.getElementById('cf-message').value.trim();
+    const msgs = statusMessages[currentLang];
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    submitBtn.textContent = msgs.sending;
     statusEl.textContent = '';
     statusEl.style.color = 'var(--muted)';
 
@@ -599,15 +740,15 @@
         throw new Error(data.error || 'Something went wrong');
       }
 
-      statusEl.textContent = 'Message sent — thanks! I\u2019ll get back to you soon.';
+      statusEl.textContent = msgs.success;
       statusEl.style.color = 'var(--amber)';
       form.reset();
     } catch (err) {
-      statusEl.textContent = 'Could not send message. Please try again or email directly.';
+      statusEl.textContent = msgs.error;
       statusEl.style.color = '#e08080';
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
+      submitBtn.textContent = msgs.submit;
     }
   });
 </script>
