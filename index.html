@@ -189,6 +189,14 @@
   .project-id{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
   .project-name{font-family:var(--font-display);font-size:24px;font-weight:600;margin-top:8px;}
   .project-body p{color:var(--muted);font-size:14.5px;margin-bottom:14px;max-width:60ch;}
+  .demo-video{margin:0 0 16px;max-width:60ch;}
+.demo-video video,.demo-video iframe{
+  width:100%;aspect-ratio:16/9;border:1px solid var(--line);
+  border-radius:10px;background:#000;display:block;
+}
+.demo-video figcaption{
+  font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:8px;
+}
   .stack-pills{display:flex;flex-wrap:wrap;gap:8px;}
   .pill{
     font-family:var(--font-mono);font-size:11px;color:var(--teal);
@@ -447,6 +455,11 @@
       </div>
       <div class="project-body">
         <p data-i18n="work-p1">A bilingual (English/Arabic) restaurant management SaaS built on Angular 21 with a PHP/MySQL backend, developed during my internship at Qartis Technologies. Full RTL support, dark/light theming, and an admin dashboard with bilingual content fields for menu and section management.</p>
+        <figure class="demo-video">
+          <video controls muted playsinline preload="metadata" poster="serv-io-poster.jpg">
+            <source src="Servio.mp4" type="video/mp4">
+          </video>
+        </figure>
         <div class="stack-pills">
           <span class="pill">Angular 21</span>
           <span class="pill">SSR</span>
