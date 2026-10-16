@@ -106,6 +106,7 @@
   }
   .role-line strong{color:var(--paper);font-weight:500;}
   .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  @media (max-width:560px){.hero-cta .btn{width:100%;justify-content:center;}}
 
   /* monitoring panel */
   .hero-panel{
@@ -171,13 +172,20 @@
   /* ---------- SKILLS ---------- */
   .skill-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
   .skill-grid1{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
-  @media (max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:900px){
+    .skill-grid,.skill-grid1{grid-template-columns:repeat(2,1fr);}
+    .skill-grid .skill-mod:last-child:nth-child(odd){grid-column:1 / -1;}
+  }
+  @media (max-width:560px){
+    .skill-grid,.skill-grid1{grid-template-columns:1fr;}
+    .skill-mod{padding:22px 18px;}
+  }
   .skill-mod{background:var(--panel);padding:26px 22px;transition:background 0.25s;}
   .skill-mod:hover{background:var(--panel-2);}
   .skill-mod .tag{font-family:var(--font-mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;margin-bottom:10px;}
   .skill-mod h3{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:10px;}
   .skill-mod ul{list-style:none;}
-  .skill-mod li{font-size:13px;color:var(--muted);padding:3px 0;font-family:var(--font-mono);}
+  .skill-mod li{font-size:13px;color:var(--muted);padding:3px 0;font-family:var(--font-mono);overflow-wrap:anywhere;}
   .skill-mod li::before{content:'· ';color:var(--teal);}
 
   /* ---------- WORK ---------- */
@@ -264,6 +272,20 @@
     padding:28px 0 40px;text-align:center;
     font-family:var(--font-mono);font-size:11px;color:var(--muted);
   }
+  .btn-outline {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  background: #F4A261;
+  color: #1F2A44;
+  border-color: #F4A261;
+}
 </style>
 </head>
 <body>
@@ -280,7 +302,7 @@
       <a href="#work" data-i18n="nav-work">Work</a>
       <a href="#log" data-i18n="nav-log">Experience</a>
       <a href="#contact" data-i18n="nav-contact">Contact</a>
-      <a href="Ahmed Fassi.pdf" download="CV-Ahmed-Fassi.pdf" data-i18n="nav-cv">Download CV</a>
+      <a href="Ahmed%20Fassi.pdf" download="CV-Ahmed-Fassi.pdf" data-i18n="nav-cv">Download CV</a>
     </div>
     <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
       <span id="lang-fr">FR</span><span style="color:var(--line);">/</span><span id="lang-en" class="active">EN</span>
@@ -293,12 +315,13 @@
   <header class="hero">
     <div class="hero-grid">
       <div class="hero-left">
-        <div class="eyebrow" data-i18n="hero-eyebrow">Ahmed Fassi · Full-Stack Developer · BI Student</div>
+        <div class="eyebrow" data-i18n="hero-eyebrow">Ahmed Fassi · BI Student</div>
         <h1 class="name" data-i18n="hero-title">Building software that <span class="accent">actually ships.</span></h1>
         <p class="role-line" data-i18n="hero-role">Third-year Business Intelligence student in Mahdia, Tunisia, working full-stack and DevOps on the side — <strong>Angular, PHP, React</strong>, and infrastructure tooling for real clients, not just class projects.</p>
         <div class="hero-cta">
           <a href="#work" class="btn btn-primary" data-i18n="hero-cta-work">View work</a>
           <a href="#contact" class="btn btn-ghost" data-i18n="hero-cta-contact">Get in touch</a>
+          <a href="Ahmed%20Fassi.pdf" download="CV-Ahmed-Fassi.pdf" class="btn btn-ghost" data-i18n="nav-cv">Download CV</a>
         </div>
       </div>
 
@@ -583,6 +606,7 @@
       </form>
 
       <div class="cta-row">
+        <a class="btn btn-primary" href="Ahmed%20Fassi.pdf" download="CV-Ahmed-Fassi.pdf" data-i18n="nav-cv">Download CV</a>
         <a class="btn btn-ghost" href="https://linkedin.com/in/ahmedfassi" target="_blank" rel="noopener" data-i18n="contact-linkedin">Connect on LinkedIn</a>
       </div>
     </div>
@@ -603,9 +627,9 @@
       'nav-work': 'Projets',
       'nav-log': 'Expérience',
       'nav-contact': 'Contact',
-      'nav-cv': 'Télécharger mon CV',
+      'nav-cv': 'Télécharger le CV',
       'nav-badge': 'DISPONIBLE EN FREELANCE',
-      'hero-eyebrow': 'Ahmed Fassi · Développeur Full-Stack · Étudiant en BI',
+      'hero-eyebrow': 'Ahmed Fassi · Étudiant en BI',
       'hero-title': 'Je construis des logiciels qui <span class="accent">sortent vraiment.</span>',
       'hero-role': "Étudiant en troisième année de Business Intelligence à Mahdia, Tunisie, je développe en full-stack et DevOps en parallèle — <strong>Angular, PHP, React</strong>, et des outils d'infrastructure pour de vrais clients, pas seulement des projets scolaires.",
       'hero-cta-work': 'Voir les projets',
